@@ -15,5 +15,6 @@ import org.springframework.stereotype.Repository;
  * @timestamp 2020/2/20
  */
 @Repository
-public interface UserDao extends JpaRepository<User,String>{
+public interface UserDao extends JpaRepository<User, String> {
+    User findByUseridAndBlack(String userid, int black);
 }

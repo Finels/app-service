@@ -56,8 +56,8 @@ public class JwtTokenUtil implements Serializable {
         return expiration.before(new Date());
     }
 
-    public String generateToken(User user) {
-        return doGenerateToken(user.getUserid());
+    public String generateToken(UserDetails user) {
+        return doGenerateToken(user.getUsername());
     }
 
     private String doGenerateToken(String subject) {

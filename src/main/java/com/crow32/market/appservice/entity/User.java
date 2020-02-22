@@ -11,9 +11,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
+import java.util.logging.SimpleFormatter;
 
 /**
  * Description:  用户
@@ -29,14 +32,20 @@ import java.util.List;
 @Table(name = "user")
 public class User implements Serializable, UserDetails {
     @Id
-    @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
-    @GeneratedValue(generator = "uuid2")
-    private String id;
     private String userid; //用户微信号或其他凭证
-    private String userToken; //用户认证凭据
+    private String usertoken; //用户认证凭据
     private String role;
     private int black; //是否进入黑名单
     private String createtime;
+
+    public void setCreatetime(String createtime) {
+        this.createtime = createtime;
+    }
+
+    public void setCreatetime(Date date) {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        this.setCreatetime(formatter.format(date));
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -47,7 +56,7 @@ public class User implements Serializable, UserDetails {
 
     @Override
     public String getPassword() {
-        return this.getUserToken();
+        return this.getUsertoken();
     }
 
     @Override

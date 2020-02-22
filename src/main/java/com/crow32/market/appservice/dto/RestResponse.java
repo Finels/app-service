@@ -37,6 +37,21 @@ public class RestResponse {
         return restResponse;
     }
 
+    public static RestResponse ok(Object data) {
+        RestResponse restResponse = new RestResponse();
+        restResponse.setResult(true);
+        restResponse.setCode(200);
+        restResponse.setData(data);
+        return restResponse;
+    }
+
+    public static RestResponse ok() {
+        RestResponse restResponse = new RestResponse();
+        restResponse.setResult(true);
+        restResponse.setCode(200);
+        return restResponse;
+    }
+
     @Override
     public String toString() {
         return "{" +

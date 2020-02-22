@@ -1,7 +1,9 @@
 package com.crow32.market.appservice;
 
 import com.crow32.market.appservice.dao.AddressDao;
+import com.crow32.market.appservice.dao.UserDao;
 import com.crow32.market.appservice.entity.Address;
+import com.crow32.market.appservice.entity.User;
 import com.crow32.market.appservice.entity.Wares;
 import com.crow32.market.appservice.service.WaresService;
 import org.junit.Before;
@@ -11,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -29,6 +32,8 @@ public class OrmTest {
     private AddressDao addressDao;
     @Autowired
     private WaresService waresService;
+    @Autowired
+    private UserDao userDao;
 
     @Before
     public void before() {
@@ -66,5 +71,14 @@ public class OrmTest {
         List c = waresService.getByNameLike("即食");
         System.out.println(b);
         System.out.println(c);
+    }
+
+    @Test
+    public void userAdd() {
+        User user = new User();
+        user.setUserid("aabbcc");
+        user.setUsertoken("测试1122");
+        user.setCreatetime(new Date());
+        userDao.save(user);
     }
 }

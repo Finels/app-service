@@ -31,4 +31,8 @@ public class SecurityUserService implements UserDetailsService {
         userDetail.setRole("ROLE_ADMIN");
         return userDetail;
     }
+
+    public void register(User user) {
+        userDao.save(user);
+    }
 }

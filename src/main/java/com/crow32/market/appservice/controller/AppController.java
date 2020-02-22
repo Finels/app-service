@@ -23,7 +23,7 @@ public class AppController {
     @Autowired
     private WaresService waresService;
 
-    @RequestMapping(value = "/wares", method = RequestMethod.GET, consumes = "application/json")
+    @RequestMapping(value = "/wares", method = RequestMethod.GET)
     public RestResponse getWaresByType(@RequestParam(value = "type", required = false) String type) {
         RestResponse result = new RestResponse();
         if (type != null) {

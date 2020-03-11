@@ -51,4 +51,9 @@ public class WaresService implements WarsServiceIntf {
         waresDao.save(wares);
     }
 
+    @Override
+    public List<Wares> listAll() {
+        return waresDao.findAll();
+    }
+
 }

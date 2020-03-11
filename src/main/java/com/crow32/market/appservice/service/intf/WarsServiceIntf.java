@@ -22,4 +22,6 @@ public interface WarsServiceIntf {
 
     void persist(Wares wares);
 
+    List listAll();
+
 }

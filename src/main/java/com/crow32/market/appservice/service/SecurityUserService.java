@@ -3,6 +3,7 @@ package com.crow32.market.appservice.service;
 import com.crow32.market.appservice.dao.UserDao;
 import com.crow32.market.appservice.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -23,6 +24,7 @@ public class SecurityUserService implements UserDetailsService {
     private UserDao userDao;
 
     @Override
+    @Cacheable("user")
     public UserDetails loadUserByUsername(String userid) throws UsernameNotFoundException {
         User userDetail = userDao.findByUseridAndBlack(userid, 0);
         if (userDetail == null) {
